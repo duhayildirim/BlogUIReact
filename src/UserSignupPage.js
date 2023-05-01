@@ -9,8 +9,7 @@ class UserSignupPage extends React.Component {
     }
 
     onChange = e => {
-        const value = e.target.value
-        const name = e.target.name
+        const {name, value} = e.target
 
         this.setState({
             [name] : value
