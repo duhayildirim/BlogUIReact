@@ -9,10 +9,10 @@ class UserSignupPage extends React.Component {
     }
 
     onChange = e => {
-        const {name, value} = e.target
+        const { name, value } = e.target
 
         this.setState({
-            [name] : value
+            [name]: value
         })
     }
 
@@ -38,7 +38,7 @@ class UserSignupPage extends React.Component {
                                         <label htmlFor="floatingPassword">Password</label>
                                     </div>
                                     <div className="form-floating mb-3">
-                                        <input type="password" className="form-control" id="floatingPasswordRepeat" placeholder="Password Repeat" name="passwordRepeat" onChange={this.onChange}/>
+                                        <input type="password" className="form-control" id="floatingPasswordRepeat" placeholder="Password Repeat" name="passwordRepeat" onChange={this.onChange} />
                                         <label htmlFor="floatingPasswordRepeat" >Password Repeat</label>
                                     </div>
                                     <div className="d-grid mt-5">
