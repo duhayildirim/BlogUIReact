@@ -8,29 +8,12 @@ class UserSignupPage extends React.Component {
         passwordRepeat: null,
     }
 
+    onChange = e => {
+        const value = e.target.value
+        const name = e.target.name
 
-
-    onChangeUsername = e => {
         this.setState({
-            username: e.target.value
-        })
-    }
-
-    onChangeEmail = e => {
-        this.setState({
-            email: e.target.value
-        })
-    }
-
-    onChangePassword = e => {
-        this.setState({
-            password: e.target.value
-        })
-    }
-
-    onChangePasswordRepeat = e => {
-        this.setState({
-            passwordRepeat: e.target.value
+            [name] : value
         })
     }
 
@@ -44,20 +27,20 @@ class UserSignupPage extends React.Component {
                                 <h2 className="card-title text-center mb-5 fw-light">Sign Up</h2>
                                 <form>
                                     <div className="form-floating mb-3">
-                                        <input type="text" className="form-control" id="floatingName" placeholder="Name" name="username" onChange={this.onChangeUsername} />
+                                        <input type="text" className="form-control" id="floatingName" placeholder="Name" name="username" onChange={this.onChange} />
                                         <label htmlFor="floatingName"> Name</label>
                                     </div>
                                     <div className="form-floating mb-3">
-                                        <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" name="email" onChange={this.onChangeEmail} />
+                                        <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" name="email" onChange={this.onChange} />
                                         <label htmlFor="floatingInput"> Email</label>
                                     </div>
                                     <div className="form-floating mb-3">
-                                        <input type="password" className="form-control" id="floatingPassword" placeholder="Password" name="password" onChange={this.onChangePassword} />
+                                        <input type="password" className="form-control" id="floatingPassword" placeholder="Password" name="password" onChange={this.onChange} />
                                         <label htmlFor="floatingPassword">Password</label>
                                     </div>
                                     <div className="form-floating mb-3">
-                                        <input type="password" className="form-control" id="floatingPasswordRepeat" placeholder="Password Repeat" />
-                                        <label htmlFor="floatingPasswordRepeat" name="passwordRepeat" onChange={this.onChangePasswordRepeat}>Password Repeat</label>
+                                        <input type="password" className="form-control" id="floatingPasswordRepeat" placeholder="Password Repeat" name="passwordRepeat" onChange={this.onChange}/>
+                                        <label htmlFor="floatingPasswordRepeat" >Password Repeat</label>
                                     </div>
                                     <div className="d-grid mt-5">
                                         <button className="btn btn-login text-uppercase fw-bold" type="submit">Sign
