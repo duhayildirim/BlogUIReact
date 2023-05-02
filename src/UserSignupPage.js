@@ -7,6 +7,7 @@ class UserSignupPage extends React.Component {
         email: null,
         password: null,
         passwordRepeat: null,
+        pendingApiCall: false,
     }
 
     onChange = e => {
@@ -22,7 +23,15 @@ class UserSignupPage extends React.Component {
 
         const { username, email, password } = this.state
         const body = { username, email, password }
+        this.setState({ pendingApiCall: true })
+
         axios.post("/api/1.0/users", body)
+            .then((res) => {
+                this.setState({ pendingApiCall: false })
+            })
+            .catch((err) => {
+                this.setState({ pendingApiCall: false })
+            })
     }
 
     render() {
@@ -51,7 +60,7 @@ class UserSignupPage extends React.Component {
                                         <label htmlFor="floatingPasswordRepeat" >Password Repeat</label>
                                     </div>
                                     <div className="d-grid mt-5">
-                                        <button className="btn btn-login text-uppercase fw-bold" type="submit" onClick={this.onClickSignup}>Sign
+                                        <button className="btn btn-login text-uppercase fw-bold" type="submit" onClick={this.onClickSignup} disabled={this.state.pendingApiCall}>Sign
                                             up</button>
                                     </div>
                                 </form>
