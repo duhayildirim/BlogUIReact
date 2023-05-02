@@ -20,10 +20,11 @@ class UserSignupPage extends React.Component {
     onClickSignup = e => {
         e.preventDefault()
 
+        const { username, email, password } = this.state
         const body = {
-            username: this.username,
-            email: this.email,
-            password: this.password,
+            username: username,
+            email: email,
+            password: password
         }
         axios.post("http://localhost:8080/api/1.0/users", body)
     }
