@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import './Styles/Form.css';
+import './styles/Form.css';
 import reportWebVitals from './reportWebVitals';
-import UserSignupPage from './UserSignupPage';
+import UserSignupPage from './pages/UserSignupPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
