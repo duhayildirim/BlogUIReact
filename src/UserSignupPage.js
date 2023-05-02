@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 class UserSignupPage extends React.Component {
     state = {
@@ -14,6 +15,17 @@ class UserSignupPage extends React.Component {
         this.setState({
             [name]: value
         })
+    }
+
+    onClickSignup = e => {
+        e.preventDefault()
+
+        const body = {
+            username: this.username,
+            email: this.email,
+            password: this.password,
+        }
+        axios.post("http://localhost:8080/api/1.0/users", body)
     }
 
     render() {
@@ -42,7 +54,7 @@ class UserSignupPage extends React.Component {
                                         <label htmlFor="floatingPasswordRepeat" >Password Repeat</label>
                                     </div>
                                     <div className="d-grid mt-5">
-                                        <button className="btn btn-login text-uppercase fw-bold" type="submit">Sign
+                                        <button className="btn btn-login text-uppercase fw-bold" type="submit" onClick={this.onClickSignup}>Sign
                                             up</button>
                                     </div>
                                 </form>
