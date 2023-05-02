@@ -60,8 +60,11 @@ class UserSignupPage extends React.Component {
                                         <label htmlFor="floatingPasswordRepeat" >Password Repeat</label>
                                     </div>
                                     <div className="d-grid mt-5">
-                                        <button className="btn btn-login text-uppercase fw-bold" type="submit" onClick={this.onClickSignup} disabled={this.state.pendingApiCall}>Sign
-                                            up</button>
+                                        <button className="btn btn-login text-uppercase fw-bold" type="submit" onClick={this.onClickSignup} disabled={this.state.pendingApiCall}>
+                                            { this.state.pendingApiCall ? <div className="spinner-grow mt-2">
+                                                <span className="sr-only"></span>
+                                            </div> : "Sign up"}
+                                        </button>
                                     </div>
                                 </form>
                             </div>
