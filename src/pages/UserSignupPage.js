@@ -1,5 +1,6 @@
 import React from "react";
-import { signup } from "../api/apiCalls";
+import { signup } from "../api/apiCalls"
+import Input from "../components/Input"
 
 class UserSignupPage extends React.Component {
     state = {
@@ -32,7 +33,7 @@ class UserSignupPage extends React.Component {
         try {
             const response = await signup(body)
         } catch (err) {
-            if(err.response.data.validationErrors){
+            if (err.response.data.validationErrors) {
                 this.setState({ errors: err.response.data.validationErrors })
             }
         }
@@ -52,20 +53,8 @@ class UserSignupPage extends React.Component {
                             <div className="card-body p-4 p-sm-5">
                                 <h2 className="card-title text-center mb-5 fw-light">Sign Up</h2>
                                 <form>
-                                    <div className="form-floating mb-3">
-                                        <input type="text" className={username ? "form-control is-invalid" : "form-control"} id="floatingName" placeholder="Name" name="username" onChange={this.onChange} />
-                                        <div className="invalid-feedback">
-                                            {username}
-                                        </div>
-                                        <label htmlFor="floatingName"> Name</label>
-                                    </div>
-                                    <div className="form-floating mb-3">
-                                        <input type="email" className={username ? "form-control is-invalid" : "form-control"} id="floatingInput" placeholder="name@example.com" name="email" onChange={this.onChange} />
-                                        <div className="invalid-feedback">
-                                            {email}
-                                        </div>
-                                        <label htmlFor="floatingInput"> Email</label>
-                                    </div>
+                                    <Input type="text" error={username} name="username" onChange={this.onChange} label="Name" placeHolder="Mark"/>
+                                    <Input type="email" error={email} name="email" onChange={this.onChange} label="Email" placeHolder="asdas@gmail.com"/>  
                                     <div className="form-floating mb-3">
                                         <input type="password" className="form-control" id="floatingPassword" placeholder="Password" name="password" onChange={this.onChange} />
                                         <label htmlFor="floatingPassword">Password</label>
