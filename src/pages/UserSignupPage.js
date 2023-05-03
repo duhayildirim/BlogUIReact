@@ -8,13 +8,17 @@ class UserSignupPage extends React.Component {
         password: null,
         passwordRepeat: null,
         pendingApiCall: false,
+        errors: {}
     }
 
     onChange = e => {
         const { name, value } = e.target
+        const errors = { ... this.state.errors }
+        errors[name] = undefined
 
         this.setState({
-            [name]: value
+            [name]: value,
+            errors
         })
     }
 
@@ -27,12 +31,19 @@ class UserSignupPage extends React.Component {
 
         try {
             const response = await signup(body)
-        } catch (err) {}   
-        
-        this.setState({ pendingApiCall: false }) 
+        } catch (err) {
+            if(err.response.data.validationErrors){
+                this.setState({ errors: err.response.data.validationErrors })
+            }
+        }
+
+        this.setState({ pendingApiCall: false })
     }
 
     render() {
+        const { pendingApiCall, errors } = this.state
+        const { username } = errors
+
         return (
             <div className="container">
                 <div className="row">
@@ -42,7 +53,10 @@ class UserSignupPage extends React.Component {
                                 <h2 className="card-title text-center mb-5 fw-light">Sign Up</h2>
                                 <form>
                                     <div className="form-floating mb-3">
-                                        <input type="text" className="form-control" id="floatingName" placeholder="Name" name="username" onChange={this.onChange} />
+                                        <input type="text" className={username ? "form-control is-invalid" : "form-control"} id="floatingName" placeholder="Name" name="username" onChange={this.onChange} />
+                                        <div className="invalid-feedback">
+                                            {username}
+                                        </div>
                                         <label htmlFor="floatingName"> Name</label>
                                     </div>
                                     <div className="form-floating mb-3">
@@ -58,8 +72,8 @@ class UserSignupPage extends React.Component {
                                         <label htmlFor="floatingPasswordRepeat" >Password Repeat</label>
                                     </div>
                                     <div className="d-grid mt-5">
-                                        <button className="btn btn-login text-uppercase fw-bold" type="submit" onClick={this.onClickSignup} disabled={this.state.pendingApiCall}>
-                                            {this.state.pendingApiCall ? <div className="spinner-grow mt-2">
+                                        <button className="btn btn-login text-uppercase fw-bold" type="submit" onClick={this.onClickSignup} disabled={pendingApiCall}>
+                                            {pendingApiCall ? <div className="spinner-grow mt-2">
                                                 <span className="sr-only"></span>
                                             </div> : "Sign up"}
                                         </button>
