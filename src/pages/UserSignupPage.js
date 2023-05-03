@@ -42,7 +42,7 @@ class UserSignupPage extends React.Component {
 
     render() {
         const { pendingApiCall, errors } = this.state
-        const { username } = errors
+        const { username, email } = errors
 
         return (
             <div className="container">
@@ -60,7 +60,10 @@ class UserSignupPage extends React.Component {
                                         <label htmlFor="floatingName"> Name</label>
                                     </div>
                                     <div className="form-floating mb-3">
-                                        <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" name="email" onChange={this.onChange} />
+                                        <input type="email" className={username ? "form-control is-invalid" : "form-control"} id="floatingInput" placeholder="name@example.com" name="email" onChange={this.onChange} />
+                                        <div className="invalid-feedback">
+                                            {email}
+                                        </div>
                                         <label htmlFor="floatingInput"> Email</label>
                                     </div>
                                     <div className="form-floating mb-3">
