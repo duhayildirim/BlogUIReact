@@ -17,6 +17,16 @@ class UserSignupPage extends React.Component {
         const errors = { ... this.state.errors }
         errors[name] = undefined
 
+        if (name === "password" || name === "passwordRepeat") {
+            if (name === "password" && value !== this.state.passwordRepeat) {
+                errors.passwordRepeat = "Password mismatch"
+            } else if (name === "passwordRepeat" && value !== this.state.password) {
+                errors.passwordRepeat = "Password mismatch"
+            } else {
+                errors.passwordRepeat = undefined
+            }
+        }
+
         this.setState({
             [name]: value,
             errors
@@ -43,7 +53,7 @@ class UserSignupPage extends React.Component {
 
     render() {
         const { pendingApiCall, errors } = this.state
-        const { username, email, password } = errors
+        const { username, email, password, passwordRepeat } = errors
 
         return (
             <div className="container">
@@ -53,15 +63,13 @@ class UserSignupPage extends React.Component {
                             <div className="card-body p-4 p-sm-5">
                                 <h2 className="card-title text-center mb-5 fw-light">Sign Up</h2>
                                 <form>
-                                    <Input type="text" error={username} name="username" onChange={this.onChange} label="Name" placeHolder="Mark"/>
-                                    <Input type="email" error={email} name="email" onChange={this.onChange} label="Email" placeHolder="asdas@gmail.com"/>  
-                                    <Input type="password" error={password} name="password" onChange={this.onChange} label="Password" placeHolder="password"/>
-                                    <div className="form-floating mb-3">
-                                        <input type="password" className="form-control" id="floatingPasswordRepeat" placeholder="Password Repeat" name="passwordRepeat" onChange={this.onChange} />
-                                        <label htmlFor="floatingPasswordRepeat" >Password Repeat</label>
-                                    </div>
+                                    <Input type="text" error={username} name="username" onChange={this.onChange} label="Name" placeHolder="Mark" />
+                                    <Input type="email" error={email} name="email" onChange={this.onChange} label="Email" placeHolder="asdas@gmail.com" />
+                                    <Input type="password" error={password} name="password" onChange={this.onChange} label="Password" placeHolder="password" />
+                                    <Input type="password" error={passwordRepeat} name="passwordRepeat" onChange={this.onChange} label="Password Repeat" placeHolder="password" />
                                     <div className="d-grid mt-5">
-                                        <button className="btn btn-login text-uppercase fw-bold" type="submit" onClick={this.onClickSignup} disabled={pendingApiCall}>
+                                        <button className="btn btn-login text-uppercase fw-bold" type="submit" onClick={this.onClickSignup}
+                                            disabled={pendingApiCall || passwordRepeat !== undefined}>
                                             {pendingApiCall ? <div className="spinner-grow mt-2">
                                                 <span className="sr-only"></span>
                                             </div> : "Sign up"}
