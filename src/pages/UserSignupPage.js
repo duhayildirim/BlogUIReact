@@ -43,7 +43,7 @@ class UserSignupPage extends React.Component {
 
     render() {
         const { pendingApiCall, errors } = this.state
-        const { username, email } = errors
+        const { username, email, password } = errors
 
         return (
             <div className="container">
@@ -55,10 +55,7 @@ class UserSignupPage extends React.Component {
                                 <form>
                                     <Input type="text" error={username} name="username" onChange={this.onChange} label="Name" placeHolder="Mark"/>
                                     <Input type="email" error={email} name="email" onChange={this.onChange} label="Email" placeHolder="asdas@gmail.com"/>  
-                                    <div className="form-floating mb-3">
-                                        <input type="password" className="form-control" id="floatingPassword" placeholder="Password" name="password" onChange={this.onChange} />
-                                        <label htmlFor="floatingPassword">Password</label>
-                                    </div>
+                                    <Input type="password" error={password} name="password" onChange={this.onChange} label="Password" placeHolder="password"/>
                                     <div className="form-floating mb-3">
                                         <input type="password" className="form-control" id="floatingPasswordRepeat" placeholder="Password Repeat" name="passwordRepeat" onChange={this.onChange} />
                                         <label htmlFor="floatingPasswordRepeat" >Password Repeat</label>
