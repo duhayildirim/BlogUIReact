@@ -3,6 +3,11 @@ body {
   background: linear-gradient(to right, #05101b, #12273d);
 }
 
+a {
+ color: #12273d !important;
+}
+
+
 .btn-login {
   font-size: 0.9rem;
   letter-spacing: 0.05rem;
