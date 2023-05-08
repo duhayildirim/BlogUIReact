@@ -1,5 +1,6 @@
 import React from "react";
 import Input from "../components/Input"
+import { login } from '../api/apiCalls'
 
 class UserLoginPage extends React.Component {
     state = {
@@ -15,6 +16,16 @@ class UserLoginPage extends React.Component {
         })
     }
 
+    onClickLogin = e => {
+        e.preventDefault()
+        const { username, password } = this.state
+        const creds = {
+            username,
+            password
+        }
+        login(creds)
+    }
+
     render() {
         return (
             <div className="container">
@@ -27,7 +38,7 @@ class UserLoginPage extends React.Component {
                                     <Input type="email" name="email" label="Email" placeHolder="asdas@gmail.com" onChange={this.onChange} />
                                     <Input type="password" name="password" label="Password" placeHolder="password" onChange={this.onChange} />
                                     <div className="d-grid mt-5">
-                                        <button className="btn btn-login text-uppercase fw-bold" type="submit">
+                                        <button className="btn btn-login text-uppercase fw-bold" type="submit" onClick={this.onClickLogin}>
                                             {/* {pendingApiCall ? <div className="spinner-grow mt-2">
                                                 <span className="sr-only"></span>
                                             </div> : "Login"} */}
@@ -35,7 +46,7 @@ class UserLoginPage extends React.Component {
                                         </button>
                                     </div>
                                     <div className="d-grid text-center mt-4">
-                                        <a href="#">Forgot your password or e-mail ?</a>
+                                        <a href="#">Forgot your password or email ?</a>
                                     </div>
                                 </form>
                             </div>
