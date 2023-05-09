@@ -26,3 +26,8 @@ a {
   font-size: smaller;
   color: red;
 }
+
+.loginError {
+  color: red !important;
+  text-decoration: auto;
+}
