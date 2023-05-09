@@ -18,10 +18,10 @@ class UserLoginPage extends React.Component {
 
     onClickLogin = e => {
         e.preventDefault()
-        const { username, password } = this.state
+        const { email, password } = this.state
         const creds = {
-            username,
-            password
+            username: email,
+            password: password
         }
         login(creds)
     }
