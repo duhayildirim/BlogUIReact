@@ -4,9 +4,13 @@ body {
 }
 
 a {
- color: #12273d !important;
+  color: #12273d !important;
 }
 
+img {
+  width: 180px;
+  height: 65px;
+}
 
 .btn-login {
   font-size: 0.9rem;

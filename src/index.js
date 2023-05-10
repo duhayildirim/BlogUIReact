@@ -8,13 +8,13 @@ import UserLoginPage from './pages/UserLoginPage';
 import HomePage from './pages/HomePage';
 import UserPage from './pages/UserPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { HashRouter, Redirect, Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
+import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
 import TopBar from './components/TopBar';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <HashRouter>
+  <Router>
     <TopBar />
     <Switch>
       <Route exact path="/" component={HomePage} />
@@ -23,7 +23,7 @@ root.render(
       <Route path="/user/:username" component={UserPage} />
       <Redirect to="/" />
     </Switch>
-  </HashRouter>
+  </Router>
 );
 
 reportWebVitals();

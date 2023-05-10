@@ -56,6 +56,7 @@ class UserLoginPage extends React.Component {
         })
         try {
             await login(creds)
+            this.props.history.push("/")
         } catch (err) {
             this.setState({
                 error: "Incorrect email or password. Try again."
@@ -71,13 +72,13 @@ class UserLoginPage extends React.Component {
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col-sm-9 col-md-9 col-lg-9 mx-auto">
+                    <div className="col-sm-8 col-md-8 col-lg-8 mx-auto shadow rounded-3">
                         <div className="card border-0 shadow rounded-3">
                             <div className="card-body p-4 p-sm-5">
                                 <h2 className="card-title text-center mb-5 fw-light">Login</h2>
                                 <form>
-                                    <Input type={email} name={email} label="Email" placeHolder="asdas@gmail.com" onChange={this.onChange} />
-                                    <Input type={password} name={password} label="Password" placeHolder="password" onChange={this.onChange} />
+                                    <Input type="email" name="email" label="Email" placeHolder="asdas@gmail.com" onChange={this.onChange} />
+                                    <Input type="password" name="password" label="Password" placeHolder="password" onChange={this.onChange} />
                                     <div className="d-grid mt-5">
                                         <button className="btn btn-login text-uppercase fw-bold" type="submit" onClick={this.onClickLogin} disabled={pendingApiCall}>
                                             {pendingApiCall ? <div className="spinner-grow mt-2">
