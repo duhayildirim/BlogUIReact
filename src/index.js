@@ -9,21 +9,21 @@ import HomePage from './pages/HomePage';
 import UserPage from './pages/UserPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { HashRouter, Redirect, Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
+import TopBar from './components/TopBar';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <HashRouter>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/login" component={UserLoginPage} />
-        <Route path="/signup" component={UserSignupPage} />
-        <Route path="/user/:username" component={UserPage} />
-        <Redirect to="/" />
-      </Switch>
-    </HashRouter>
-  </React.StrictMode>
+  <HashRouter>
+    <TopBar />
+    <Switch>
+      <Route exact path="/" component={HomePage} />
+      <Route path="/login" component={UserLoginPage} />
+      <Route path="/signup" component={UserSignupPage} />
+      <Route path="/user/:username" component={UserPage} />
+      <Redirect to="/" />
+    </Switch>
+  </HashRouter>
 );
 
 reportWebVitals();
