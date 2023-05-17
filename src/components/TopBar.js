@@ -3,7 +3,34 @@ import logo from '../assets/logo.png'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 
 class TopBar extends React.Component {
+
+    state = {
+        isLoggedIn: true,
+        username: 'duha'
+    }
+
     render() {
+        const { isLoggedIn, username } = this.state
+        let links = (<div className="ml-auto">
+            <Link to="/login" className="btn btn-login btn-sm text-uppercase fw-bold">
+                LOGIN
+            </Link>
+            <Link to="/signup" style={{ marginLeft: '8px' }} className="btn btn-login btn-sm text-uppercase fw-bold">
+                SIGN UP
+            </Link>
+        </div>)
+
+        if (isLoggedIn) {
+            links = (<div className="ml-auto">
+                <Link to={`/user/${username}`} className="btn btn-login btn-sm text-uppercase fw-bold">
+                    {username}
+                </Link>
+                <Link style={{ marginLeft: '8px' }} className="btn btn-login btn-sm text-uppercase fw-bold">
+                    LOGOUT
+                </Link>
+            </div>)
+        }
+
         return (
             <div className="container">
                 <div className="row">
@@ -14,14 +41,7 @@ class TopBar extends React.Component {
                                     <Link to="/" className="navbar-brand">
                                         <img src={logo} alt="duha web site" />
                                     </Link>
-                                    <div className="ml-auto">
-                                        <Link to="/login" className="btn btn-login text-uppercase fw-bold">
-                                            LOGIN
-                                        </Link>
-                                        <Link to="/signup" style={{marginLeft :'8px'}} className="btn btn-login text-uppercase fw-bold">
-                                            SIGNUP
-                                        </Link>
-                                    </div>
+                                    {links}
                                 </div>
                             </nav>
                         </div>
